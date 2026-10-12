@@ -5,26 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
         name="description"
-        content="AxloMC is a next-generation Minecraft network built around fair gameplay, competitive experiences, and community progression."
+        content="Explore AxloMC, a next-generation Minecraft network."
     >
-    <meta name="theme-color" content="#070a12">
-    <title>AxloMC | Minecraft Network</title>
+    <meta name="theme-color" content="#050713">
+
+    <title>AxloMC | Explore Your World</title>
+
+    IMG_2433.png
     style.css
     script.jsscript>
 </head>
 
-<body>
-    <div class="page-background" aria-hidden="true">
+<body class="intro-active">
+    <div class="background" aria-hidden="true">
         <div class="background-grid"></div>
-        <div class="background-glow background-glow-left"></div>
-        <div class="background-glow background-glow-right"></div>
+        <div class="background-glow glow-one"></div>
+        <div class="background-glow glow-two"></div>
+        <div class="background-glow glow-three"></div>
+    </div>
+
+    <div class="intro" id="intro">
+        <div class="intro-light" aria-hidden="true"></div>
+
+        <div class="intro-content">
+            <p class="intro-message" id="introMessage">
+                Explore Your World.
+            </p>
+
+            IMG_2433.png
+        </div>
+
+        <button class="intro-skip" id="introSkip" type="button">
+            Skip
+        </button>
     </div>
 
     <header class="site-header" id="siteHeader">
-        <nav class="navbar" aria-label="Main navigation">
+        <nav class="navigation" aria-label="Main navigation">
             #home
-                <span class="brand-mark">A</span>
-                <span class="brand-text">AXLO<span>MC</span></span>
+                IMG_2433.png
+                <span>AXLOMC</span>
             </a>
 
             <button
@@ -42,431 +62,620 @@
 
             <div class="navigation-links" id="navigationLinks">
                 #homeHome</a>
-                #gamesGames</a>
-                #featuresFeatures</a>
-                #economyAX Economy</a>
-                #joinJoin</a>
-                #joinPlay Now</a>
+                #profileProfile</a>
+                #shopShop</a>
+                #staffStaff</a>
+                #leaderboardLeaderboard</a>
+                #newsNews</a>
+                #announcementsAnnouncements</a>
+                #aboutAbout</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero section" id="home">
-            <div class="hero-content">
-                <div class="status-badge">
+        <section class="hero full-section" id="home">
+            <div class="hero-copy reveal reveal-left">
+                <div class="status-pill">
                     <span class="status-dot"></span>
-                    <span>Network in development</span>
+                    Network in Development
                 </div>
 
-                <p class="eyebrow">NEXT-GENERATION MINECRAFT NETWORK</p>
+                <p class="section-eyebrow">
+                    NEXT-GENERATION MINECRAFT NETWORK
+                </p>
 
                 <h1>
-                    Play without
-                    <span>limits.</span>
+                    Explore.
+                    <span>Compete.</span>
+                    Create.
                 </h1>
 
                 <p class="hero-description">
-                    Compete, survive, create, and build your legacy in a
-                    Minecraft network designed around fair gameplay,
-                    meaningful progression, and an active global community.
+                    Discover a connected Minecraft network built around
+                    fair competition, meaningful progression, creativity,
+                    and community.
                 </p>
 
                 <div class="hero-actions">
-                    #join
-                        Join AxloMC
+                    #profile
+                        Explore the Network
                     </a>
 
-                    #games
-                        Explore Games
-                    </a>
-                </div>
-
-                <div class="server-address-card">
-                    <div>
-                        <span class="server-address-label">
-                            SERVER ADDRESS
-                        </span>
-                        <strong>Coming Soon</strong>
-                    </div>
-
-                    <button class="copy-button" type="button" disabled>
-                        Not Available
+                    <button class="button button-secondary" type="button" disabled>
+                        Server Coming Soon
                     </button>
                 </div>
 
-                <div class="hero-statistics">
-                    <div class="statistic">
-                        <strong>In Development</strong>
-                        <span>Network Status</span>
-                    </div>
-
-                    <div class="statistic">
+                <div class="hero-information">
+                    <div>
                         <strong>Java + Bedrock</strong>
                         <span>Planned Support</span>
                     </div>
 
-                    <div class="statistic">
+                    <div>
+                        <strong>AX</strong>
+                        <span>Network Currency</span>
+                    </div>
+
+                    <div>
                         <strong>Fair Play</strong>
-                        <span>Skill-Based Games</span>
+                        <span>Player-Focused Design</span>
                     </div>
                 </div>
             </div>
 
-            <div class="hero-visual" aria-hidden="true">
-                <div class="orbit orbit-one"></div>
-                <div class="orbit orbit-two"></div>
-                <div class="orbit orbit-three"></div>
+            <div class="hero-art reveal reveal-right">
+                <div class="logo-orbit orbit-one"></div>
+                <div class="logo-orbit orbit-two"></div>
+                <div class="logo-orbit orbit-three"></div>
 
-                <div class="visual-core">
-                    <span>A</span>
-                </div>
+                <div class="logo-aura"></div>
 
-                <div class="floating-card floating-card-one">
+                IMG_2433.png
+
+                <div class="floating-label label-one">
                     <span>NETWORK</span>
                     <strong>AxloMC</strong>
                 </div>
 
-                <div class="floating-card floating-card-two">
-                    <span>REWARD</span>
-                    <strong>+250 AX</strong>
+                <div class="floating-label label-two">
+                    <span>CURRENCY</span>
+                    <strong>AX</strong>
                 </div>
 
-                <div class="floating-card floating-card-three">
-                    <span>PROGRESSION</span>
-                    <strong>Level Up</strong>
+                <div class="floating-label label-three">
+                    <span>STATUS</span>
+                    <strong>Building</strong>
+                </div>
+            </div>
+
+            #profile
+                <span>Scroll to Explore</span>
+                <span class="scroll-arrow">↓</span>
+            </a>
+        </section>
+
+        <section class="content-section full-section" id="profile">
+            <div class="section-layout">
+                <div class="section-copy reveal reveal-left">
+                    <p class="section-number">01</p>
+                    <p class="section-eyebrow">PROFILE</p>
+
+                    <h2>Your identity across the network.</h2>
+
+                    <p>
+                        Track your progression, achievements, statistics,
+                        cosmetics, AX balance, and activity across every
+                        AxloMC experience.
+                    </p>
+
+                    <div class="feature-list">
+                        <span>Network Level</span>
+                        <span>AX Balance</span>
+                        <span>Achievements</span>
+                        <span>Game Statistics</span>
+                        <span>Cosmetics</span>
+                        <span>Match History</span>
+                    </div>
+                </div>
+
+                <div class="visual-panel reveal reveal-right">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">A</div>
+
+                            <div>
+                                <span>PLAYER PROFILE</span>
+                                <h3>PlayerName</h3>
+                            </div>
+
+                            <div class="profile-level">LV. 1</div>
+                        </div>
+
+                        <div class="profile-progress">
+                            <div class="profile-progress-label">
+                                <span>Network Experience</span>
+                                <span>0 / 1,000 XP</span>
+                            </div>
+
+                            <div class="progress-track">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+
+                        <div class="profile-statistics">
+                            <div>
+                                <span>AX Balance</span>
+                                <strong>0 AX</strong>
+                            </div>
+
+                            <div>
+                                <span>Achievements</span>
+                                <strong>0</strong>
+                            </div>
+
+                            <div>
+                                <span>Victories</span>
+                                <strong>0</strong>
+                            </div>
+                        </div>
+
+                        <p class="coming-soon">
+                            Player profiles are coming soon.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="games">
-            <div class="section-heading">
-                <p class="eyebrow">GAME MODES</p>
-                <h2>Find your next challenge.</h2>
+        <section class="content-section full-section" id="shop">
+            <div class="section-layout section-layout-reversed">
+                <div class="visual-panel reveal reveal-left">
+                    <div class="shop-card">
+                        <div class="shop-top">
+                            <span>AXLOMC SHOP</span>
+                            <span>COMING SOON</span>
+                        </div>
+
+                        <div class="shop-symbol">AX</div>
+
+                        <h3>Customize your experience.</h3>
+
+                        <div class="shop-grid">
+                            <span>Ranks</span>
+                            <span>Cosmetics</span>
+                            <span>Tags</span>
+                            <span>Pets</span>
+                            <span>Wings</span>
+                            <span>Effects</span>
+                            <span>Gifts</span>
+                            <span>Bundles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-copy reveal reveal-right">
+                    <p class="section-number">02</p>
+                    <p class="section-eyebrow">SHOP</p>
+
+                    <h2>Make AxloMC your own.</h2>
+
+                    <p>
+                        Discover ranks, cosmetics, tags, pets, wings,
+                        visual effects, gifts, and other customization
+                        options.
+                    </p>
+
+                    <p class="fair-play-note">
+                        Premium purchases will focus on customization and
+                        identity instead of direct competitive advantages.
+                    </p>
+
+                    <button class="button button-secondary" type="button" disabled>
+                        Shop Coming Soon
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section full-section" id="staff">
+            <div class="section-layout">
+                <div class="section-copy reveal reveal-left">
+                    <p class="section-number">03</p>
+                    <p class="section-eyebrow">STAFF</p>
+
+                    <h2>Meet the team behind AxloMC.</h2>
+
+                    <p>
+                        AxloMC is being built by a team focused on network
+                        development, community safety, game design, support,
+                        and creative experiences.
+                    </p>
+
+                    <div class="role-list">
+                        <span>Owner</span>
+                        <span>Administrator</span>
+                        <span>Developer</span>
+                        <span>Senior Moderator</span>
+                        <span>Moderator</span>
+                        <span>Helper</span>
+                        <span>Builder</span>
+                    </div>
+                </div>
+
+                <div class="visual-panel reveal reveal-bottom">
+                    <div class="staff-grid">
+                        <article class="staff-card">
+                            <div class="staff-avatar">O</div>
+                            <p>Owner</p>
+                            <span>Network Leadership</span>
+                        </article>
+
+                        <article class="staff-card">
+                            <div class="staff-avatar">D</div>
+                            <p>Developer</p>
+                            <span>Network Development</span>
+                        </article>
+
+                        <article class="staff-card">
+                            <div class="staff-avatar">M</div>
+                            <p>Moderator</p>
+                            <span>Community Safety</span>
+                        </article>
+
+                        <article class="staff-card">
+                            <div class="staff-avatar">B</div>
+                            <p>Builder</p>
+                            <span>World Design</span>
+                        </article>
+                    </div>
+
+                    <p class="panel-message">
+                        Staff profiles will appear here as the team grows.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section full-section" id="leaderboard">
+            <div class="centered-heading reveal reveal-bottom">
+                <p class="section-number">04</p>
+                <p class="section-eyebrow">LEADERBOARD</p>
+
+                <h2>Rise above the competition.</h2>
 
                 <p>
-                    Enter competitive matches, test your combat skills, or
-                    build a lasting world with friends.
+                    Rankings will track the top players across the AxloMC
+                    Network and individual game modes.
                 </p>
             </div>
 
-            <div class="game-grid">
-                <article class="game-card">
-                    <div class="game-icon">BW</div>
+            <div class="leaderboard-panel reveal reveal-scale">
+                <div class="leaderboard-tabs">
+                    <button class="leaderboard-tab active" type="button">
+                        Overall
+                    </button>
 
-                    <div class="game-card-content">
-                        <span class="card-label">PLANNED</span>
+                    <button class="leaderboard-tab" type="button">
+                        BedWars
+                    </button>
+
+                    <button class="leaderboard-tab" type="button">
+                        SkyWars
+                    </button>
+
+                    <button class="leaderboard-tab" type="button">
+                        Duels
+                    </button>
+
+                    <button class="leaderboard-tab" type="button">
+                        Survival
+                    </button>
+                </div>
+
+                <div class="podium">
+                    <div class="podium-player podium-second">
+                        <span class="podium-rank">2</span>
+                        <div class="podium-avatar">?</div>
+                        <strong>Coming Soon</strong>
+                        <span>Second Place</span>
+                    </div>
+
+                    <div class="podium-player podium-first">
+                        <span class="podium-rank">1</span>
+                        <div class="podium-avatar">?</div>
+                        <strong>Coming Soon</strong>
+                        <span>First Place</span>
+                    </div>
+
+                    <div class="podium-player podium-third">
+                        <span class="podium-rank">3</span>
+                        <div class="podium-avatar">?</div>
+                        <strong>Coming Soon</strong>
+                        <span>Third Place</span>
+                    </div>
+                </div>
+
+                <div class="leaderboard-message">
+                    <h3>Leaderboard Data Coming Soon</h3>
+                    <p>
+                        Player rankings will appear when AxloMC public
+                        testing begins.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section full-section" id="news">
+            <div class="section-layout">
+                <div class="section-copy reveal reveal-left">
+                    <p class="section-number">05</p>
+                    <p class="section-eyebrow">NEWS</p>
+
+                    <h2>Discover the latest from AxloMC.</h2>
+
+                    <p>
+                        Follow development updates, new game information,
+                        community news, events, and future releases.
+                    </p>
+
+                    <div class="news-categories">
+                        <span>Development</span>
+                        <span>Updates</span>
+                        <span>Events</span>
+                        <span>Games</span>
+                        <span>Community</span>
+                    </div>
+                </div>
+
+                <div class="visual-panel reveal reveal-right">
+                    <article class="news-card">
+                        <div class="news-card-header">
+                            <span class="news-category">DEVELOPMENT</span>
+                            <time datetime="2026-10-12">October 12, 2026</time>
+                        </div>
+
+                        <h3>The AxloMC journey begins.</h3>
+
+                        <p>
+                            The official AxloMC branding and website are now
+                            in development. More information about the network
+                            will be shared as development progresses.
+                        </p>
+
+                        <span class="news-read-more">
+                            More updates coming soon
+                        </span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section full-section" id="announcements">
+            <div class="section-layout section-layout-reversed">
+                <div class="visual-panel reveal reveal-left">
+                    <div class="announcement-list">
+                        <article class="announcement-card important">
+                            <div class="announcement-icon">!</div>
+
+                            <div>
+                                <span>NETWORK STATUS</span>
+                                <h3>AxloMC is in development.</h3>
+                                <p>
+                                    The network is not currently open to the
+                                    public.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="announcement-card">
+                            <div class="announcement-icon">T</div>
+
+                            <div>
+                                <span>PUBLIC TESTING</span>
+                                <h3>No testing date announced.</h3>
+                                <p>
+                                    Testing information will be published
+                                    here.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="announcement-card">
+                            <div class="announcement-icon">IP</div>
+
+                            <div>
+                                <span>SERVER ADDRESS</span>
+                                <h3>Coming soon.</h3>
+                                <p>
+                                    The official server address has not been
+                                    released.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="section-copy reveal reveal-right">
+                    <p class="section-number">06</p>
+                    <p class="section-eyebrow">ANNOUNCEMENTS</p>
+
+                    <h2>Important network information.</h2>
+
+                    <p>
+                        Official testing schedules, maintenance notices,
+                        launch information, and critical network updates
+                        will appear here.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section about-section" id="about">
+            <div class="centered-heading reveal reveal-bottom">
+                <p class="section-number">07</p>
+                <p class="section-eyebrow">ABOUT AXLOMC</p>
+
+                <h2>Explore every world.</h2>
+
+                <p>
+                    AxloMC will bring multiple Minecraft experiences
+                    together through shared progression, achievements,
+                    cosmetics, and community.
+                </p>
+            </div>
+
+            <div class="game-mode-list">
+                <article class="game-mode reveal reveal-left">
+                    <div class="game-mode-number">01</div>
+
+                    <div class="game-mode-content">
+                        <span class="game-status">PLANNED</span>
                         <h3>BedWars</h3>
 
                         <p>
-                            Protect your bed, gather resources, upgrade your
-                            team, and eliminate every opponent.
+                            Protect your bed, collect resources, upgrade
+                            your team, and defeat every opponent.
                         </p>
-
-                        <ul>
-                            <li>Solo and team modes</li>
-                            <li>Levels and statistics</li>
-                            <li>Daily and weekly quests</li>
-                        </ul>
                     </div>
+
+                    <div class="game-mode-symbol">BW</div>
                 </article>
 
-                <article class="game-card">
-                    <div class="game-icon">SW</div>
+                <article class="game-mode reveal reveal-right">
+                    <div class="game-mode-number">02</div>
 
-                    <div class="game-card-content">
-                        <span class="card-label">PLANNED</span>
+                    <div class="game-mode-content">
+                        <span class="game-status">PLANNED</span>
                         <h3>SkyWars</h3>
 
                         <p>
-                            Loot floating islands, choose your strategy, and
-                            become the final surviving player.
+                            Loot floating islands, choose your strategy,
+                            and become the final surviving player.
                         </p>
-
-                        <ul>
-                            <li>Competitive maps</li>
-                            <li>Fast-paced combat</li>
-                            <li>Seasonal rewards</li>
-                        </ul>
                     </div>
+
+                    <div class="game-mode-symbol">SW</div>
                 </article>
 
-                <article class="game-card">
-                    <div class="game-icon">D</div>
+                <article class="game-mode reveal reveal-left">
+                    <div class="game-mode-number">03</div>
 
-                    <div class="game-card-content">
-                        <span class="card-label">PLANNED</span>
+                    <div class="game-mode-content">
+                        <span class="game-status">PLANNED</span>
                         <h3>Duels</h3>
 
                         <p>
-                            Challenge other players in fast competitive
-                            matches across multiple combat modes.
+                            Challenge players in competitive matches across
+                            multiple kits, arenas, and ranked modes.
                         </p>
-
-                        <ul>
-                            <li>Ranked matchmaking</li>
-                            <li>Multiple duel kits</li>
-                            <li>Detailed match history</li>
-                        </ul>
                     </div>
+
+                    <div class="game-mode-symbol">D</div>
                 </article>
 
-                <article class="game-card">
-                    <div class="game-icon">SV</div>
+                <article class="game-mode reveal reveal-right">
+                    <div class="game-mode-number">04</div>
 
-                    <div class="game-card-content">
-                        <span class="card-label">PLANNED</span>
+                    <div class="game-mode-content">
+                        <span class="game-status">PLANNED</span>
                         <h3>Survival</h3>
 
                         <p>
-                            Explore, build, trade, and create a community in
-                            a balanced survival experience.
+                            Build, explore, trade, protect your land, and
+                            create a lasting community.
                         </p>
-
-                        <ul>
-                            <li>Land protection</li>
-                            <li>Player economy</li>
-                            <li>Community events</li>
-                        </ul>
                     </div>
+
+                    <div class="game-mode-symbol">SV</div>
                 </article>
+            </div>
+
+            <div class="network-information reveal reveal-bottom">
+                <div>
+                    <span>Platform</span>
+                    <strong>Java + Bedrock Planned</strong>
+                </div>
+
+                <div>
+                    <span>Currency</span>
+                    <strong>AX</strong>
+                </div>
+
+                <div>
+                    <span>Status</span>
+                    <strong>In Development</strong>
+                </div>
+
+                <div>
+                    <span>Server Address</span>
+                    <strong>Coming Soon</strong>
+                </div>
             </div>
         </section>
 
-        <section class="section" id="features">
-            <div class="section-heading">
-                <p class="eyebrow">WHY AXLOMC?</p>
-                <h2>Built around players.</h2>
+        <section class="closing-section full-section">
+            <div class="closing-content reveal reveal-scale">
+                IMG_2433.png
+
+                <p class="section-eyebrow">THE NETWORK IS FORMING</p>
+
+                <h2>Your world awaits.</h2>
 
                 <p>
-                    AxloMC focuses on competitive integrity, meaningful
-                    progression, and community-driven experiences.
+                    AxloMC is currently in development. Follow the journey
+                    and prepare for the first public test.
                 </p>
-            </div>
 
-            <div class="feature-grid">
-                <article class="feature-card">
-                    <span class="feature-number">01</span>
-                    <h3>Fair Progression</h3>
+                <div class="closing-actions">
+                    <button
+                        class="button button-primary"
+                        type="button"
+                        disabled
+                    >
+                        Discord Coming Soon
+                    </button>
 
-                    <p>
-                        Success is earned through gameplay, strategy, and
-                        skill. Premium purchases focus on cosmetics and
-                        identity instead of combat power.
-                    </p>
-                </article>
-
-                <article class="feature-card">
-                    <span class="feature-number">02</span>
-                    <h3>Community Events</h3>
-
-                    <p>
-                        Join tournaments, building competitions,
-                        limited-time challenges, and special network events.
-                    </p>
-                </article>
-
-                <article class="feature-card">
-                    <span class="feature-number">03</span>
-                    <h3>Unified Network</h3>
-
-                    <p>
-                        Share progression, cosmetics, achievements, and
-                        rewards across the entire AxloMC network.
-                    </p>
-                </article>
-
-                <article class="feature-card">
-                    <span class="feature-number">04</span>
-                    <h3>Frequent Updates</h3>
-
-                    <p>
-                        New maps, modes, cosmetics, balance changes, and
-                        seasonal content will keep the network evolving.
-                    </p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section" id="economy">
-            <div class="economy-panel">
-                <div class="economy-content">
-                    <p class="eyebrow">AX ECONOMY</p>
-                    <h2>Play. Earn. Customize.</h2>
-
-                    <p>
-                        AX is the primary gameplay currency of AxloMC.
-                        Players can earn AX through matches, quests,
-                        achievements, daily rewards, and community events.
-                    </p>
-
-                    <div class="economy-flow">
-                        <div class="economy-step">
-                            <span>1</span>
-
-                            <div>
-                                <strong>Play</strong>
-                                <p>Join games and complete objectives.</p>
-                            </div>
-                        </div>
-
-                        <div class="economy-line"></div>
-
-                        <div class="economy-step">
-                            <span>2</span>
-
-                            <div>
-                                <strong>Earn AX</strong>
-                                <p>Receive AX for activity and progress.</p>
-                            </div>
-                        </div>
-
-                        <div class="economy-line"></div>
-
-                        <div class="economy-step">
-                            <span>3</span>
-
-                            <div>
-                                <strong>Customize</strong>
-                                <p>Unlock cosmetics and visual effects.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="currency-card">
-                    <div class="currency-card-header">
-                        <span>AXLOMC WALLET</span>
-                        <span>NETWORK</span>
-                    </div>
-
-                    <div class="currency-symbol">AX</div>
-
-                    <div class="currency-balance">
-                        <span>EXAMPLE BALANCE</span>
-                        <strong>12,500 AX</strong>
-                    </div>
-
-                    <div class="currency-card-footer">
-                        <span>PLAY TO EARN</span>
-                        <span>FAIR PROGRESSION</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="join">
-            <div class="join-panel">
-                <div class="join-content">
-                    <p class="eyebrow">JOIN THE NETWORK</p>
-                    <h2>Your adventure starts here.</h2>
-
-                    <p>
-                        AxloMC is currently in development. The official
-                        server address, supported versions, Discord server,
-                        and launch date will be announced before release.
-                    </p>
-
-                    <div class="join-actions">
-                        <button
-                            class="button button-primary"
-                            type="button"
-                            disabled
-                        >
-                            Server Coming Soon
-                        </button>
-
-                        <button
-                            class="button button-secondary"
-                            type="button"
-                            disabled
-                        >
-                            Discord Coming Soon
-                        </button>
-                    </div>
-                </div>
-
-                <div class="development-list">
-                    <div class="development-item">
-                        <span class="development-number">01</span>
-
-                        <div class="development-content">
-                            <strong>Website</strong>
-                            <p>Official website development</p>
-                        </div>
-
-                        <span class="development-status active">
-                            ACTIVE
-                        </span>
-                    </div>
-
-                    <div class="development-item">
-                        <span class="development-number">02</span>
-
-                        <div class="development-content">
-                            <strong>Core Network</strong>
-                            <p>Proxy, lobby, and account systems</p>
-                        </div>
-
-                        <span class="development-status">
-                            PLANNED
-                        </span>
-                    </div>
-
-                    <div class="development-item">
-                        <span class="development-number">03</span>
-
-                        <div class="development-content">
-                            <strong>Game Modes</strong>
-                            <p>Initial playable experiences</p>
-                        </div>
-
-                        <span class="development-status">
-                            PLANNED
-                        </span>
-                    </div>
-
-                    <div class="development-item">
-                        <span class="development-number">04</span>
-
-                        <div class="development-content">
-                            <strong>Public Launch</strong>
-                            <p>Official AxloMC network release</p>
-                        </div>
-
-                        <span class="development-status">
-                            FUTURE
-                        </span>
-                    </div>
+                    <button
+                        class="button button-secondary"
+                        type="button"
+                        disabled
+                    >
+                        Server Coming Soon
+                    </button>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-content">
+        <div class="footer-main">
             #home
-                <span class="brand-mark">A</span>
-                <span class="brand-text">AXLO<span>MC</span></span>
+                IMG_2433.png
+                <span>AXLOMC</span>
             </a>
 
             <div class="footer-links">
-                #gamesGames</a>
-                #featuresFeatures</a>
-                #economyAX Economy</a>
-                #joinJoin</a>
+                #profileProfile</a>
+                #shopShop</a>
+                #staffStaff</a>
+                #leaderboardLeaderboard</a>
+                #newsNews</a>
+                #announcementsAnnouncements</a>
+                #aboutAbout</a>
             </div>
+        </div>
 
-            <div class="footer-legal">
-                <p>
-                    AxloMC is not affiliated with Mojang Studios or Microsoft.
-                </p>
+        <div class="footer-bottom">
+            <p>
+                AxloMC is not affiliated with Mojang Studios or Microsoft.
+            </p>
 
-                <p>
-                    &copy; <span id="currentYear"></span> AxloMC.
-                    All rights reserved.
-                </p>
-            </div>
+            <p>
+                &copy; <span id="currentYear"></span> AxloMC.
+                All rights reserved.
+            </p>
         </div>
     </footer>
 </body>
