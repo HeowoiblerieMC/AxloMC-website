@@ -8,13 +8,6 @@ _Compete. Survive. Create. Build your legacy._
 
 <br>
 
-[![Website](https://img.shields.io/badge/Website?style=for-the-badge&logo=github](#website)
-[![Status](https://img.shields.io/badgeDevelopment-58DDFF?style=for-the-badge](#development-status)
-[![Minecraft](https://img.shields.io/badge/Minecraft-Java_%2A1?style=for-the-badge&logo=minecraft](#planned-support)
-[![License](https://img.shields.io/badge/License-All_Rights_Reservede=for-the-badge](#license)
-
-<br>
-
 **Play without limits.**
 
 </div>
