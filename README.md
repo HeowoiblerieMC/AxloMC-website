@@ -1,2 +1,88 @@
-# AxloMC-website
-this is axlomc's website, but this is for practice and testing
+<div align="center">
+
+# AXLOMC
+
+### A next-generation Minecraft network.
+
+_Compete. Survive. Create. Build your legacy._
+
+<br>
+
+[![Website](https://img.shields.io/badge/Website?style=for-the-badge&logo=github](#website)
+[![Status](https://img.shields.io/badgeDevelopment-58DDFF?style=for-the-badge](#development-status)
+[![Minecraft](https://img.shields.io/badge/Minecraft-Java_%2A1?style=for-the-badge&logo=minecraft](#planned-support)
+[![License](https://img.shields.io/badge/License-All_Rights_Reservede=for-the-badge](#license)
+
+<br>
+
+**Play without limits.**
+
+</div>
+
+---
+
+## About AxloMC
+
+AxloMC is a next-generation Minecraft network focused on fair gameplay, meaningful progression, competitive experiences, and an active global community.
+
+The network is currently in development. The official server address, supported versions, Discord community, and launch date will be announced before release.
+
+## Planned Game Modes
+
+### BedWars
+
+Protect your bed, gather resources, upgrade your team, and eliminate every opponent.
+
+- Solo and team modes
+- Player levels and statistics
+- Daily and weekly quests
+- Seasonal progression
+- Cosmetic rewards
+
+### SkyWars
+
+Loot floating islands, choose your strategy, and become the final surviving player.
+
+- Competitive maps
+- Fast-paced combat
+- Player statistics
+- Seasonal rewards
+- Progression challenges
+
+### Duels
+
+Challenge other players in fast competitive matches across multiple combat modes.
+
+- Ranked matchmaking
+- Multiple duel kits
+- Private matches
+- Detailed match history
+- Competitive leaderboards
+
+### Survival
+
+Explore, build, trade, and create a lasting community in a balanced survival experience.
+
+- Land protection
+- Player economy
+- Trading systems
+- Community events
+- Long-term progression
+
+## AX Economy
+
+**AX** is the main gameplay currency of AxloMC.
+
+Players will be able to earn AX through:
+
+- Playing games
+- Winning matches
+- Completing quests
+- Unlocking achievements
+- Claiming daily rewards
+- Participating in community events
+
+AX will primarily be used to unlock cosmetic and customization content.
+
+```text
+PLAY -> EARN AX -> UNLOCK COSMETICS
