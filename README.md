@@ -1,16 +1,21 @@
-<div align="center">
+<<div align="center">
+
+<img
+    src="./IMG_2433.png"
+    alt="AxloMC Logo"
+    width="420"
+>
 
 # AXLOMC
 
-**https://heowoibleriemc.github.io/AxloMC-website/**
-
-### A next-generation Minecraft network.
-
-_Compete. Survive. Create. Build your legacy._
+### A next-our legacy.**
 
 <br>
 
-**Play without limits.**
+![Website](https://img.shields.io/badge/Website-In%nt-667CFF?style=for-the-badge
+![Network](https://img.shields.io/badge/Network-ComingDFF?style=for-the-badge
+![Minecraft](https://img.shields.io/badge/Minecraft-Javaock-50E2A1?style=for-the-badge
+![License](https://img.shields.io/badge/License-All%20Rights-A36CFF?style=for-the-badge
 
 </div>
 
@@ -66,7 +71,7 @@ Explore, build, trade, and create a lasting community in a balanced survival exp
 
 ## AX Economy
 
-**AX** is the main gameplay currency of AxloMC.
+**AX** is the primary gameplay currency of AxloMC.
 
 Players will be able to earn AX through:
 
@@ -76,8 +81,6 @@ Players will be able to earn AX through:
 - Unlocking achievements
 - Claiming daily rewards
 - Participating in community events
-
-AX will primarily be used to unlock cosmetic and customization content.
 
 ```text
 PLAY -> EARN AX -> UNLOCK COSMETICS
