@@ -4,58 +4,60 @@ const navigationLinks = document.getElementById("navigationLinks");
 const currentYear = document.getElementById("currentYear");
 
 function updateHeader() {
-    if (window.scrollY > 20) {
-        siteHeader.classList.add("scrolled");
-    } else {
-        siteHeader.classList.remove("scrolled");
+    if (!siteHeader) {
+        return;
     }
+
+    siteHeader.classList.toggle("scrolled", window.scrollY > 20);
 }
 
 function openMenu() {
+    if (!menuButton || !navigationLinks) {
+        return;
+    }
+
     menuButton.classList.add("open");
     navigationLinks.classList.add("open");
-
     menuButton.setAttribute("aria-expanded", "true");
-    menuButton.setAttribute(
-        "aria-label",
-        "Close navigation menu"
-    );
+    menuButton.setAttribute("aria-label", "Close navigation menu");
 }
 
 function closeMenu() {
+    if (!menuButton || !navigationLinks) {
+        return;
+    }
+
     menuButton.classList.remove("open");
     navigationLinks.classList.remove("open");
-
     menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute(
-        "aria-label",
-        "Open navigation menu"
-    );
+    menuButton.setAttribute("aria-label", "Open navigation menu");
 }
 
 function toggleMenu() {
-    const menuIsOpen = navigationLinks.classList.contains("open");
+    if (!navigationLinks) {
+        return;
+    }
 
-    if (menuIsOpen) {
+    if (navigationLinks.classList.contains("open")) {
         closeMenu();
     } else {
         openMenu();
     }
 }
 
-menuButton.addEventListener("click", toggleMenu);
+if (menuButton) {
+    menuButton.addEventListener("click", toggleMenu);
+}
 
-navigationLinks.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
+if (navigationLinks) {
+    navigationLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+    });
+}
+
+window.addEventListener("scroll", updateHeader, {
+    passive: true
 });
-
-window.addEventListener(
-    "scroll",
-    updateHeader,
-    {
-        passive: true
-    }
-);
 
 window.addEventListener("resize", () => {
     if (window.innerWidth > 760) {
@@ -69,6 +71,8 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-currentYear.textContent = new Date().getFullYear();
+if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+}
 
 updateHeader();
