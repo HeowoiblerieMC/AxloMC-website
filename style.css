@@ -4,7 +4,6 @@
     --primary: #667cff;
     --primary-light: #8ca8ff;
     --secondary: #58ddff;
-    --accent: #a36cff;
     --success: #50e2a1;
     --text: #f7f9ff;
     --text-muted: #9faac0;
@@ -78,15 +77,8 @@ ul {
     inset: 0;
     opacity: 0.25;
     background-image:
-        linear-gradient(
-            rgba(126, 151, 207, 0.055) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(126, 151, 207, 0.055) 1px,
-            transparent 1px
-        );
+        linear-gradient(rgba(126, 151, 207, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(126, 151, 207, 0.055) 1px, transparent 1px);
     background-size: 65px 65px;
     mask-image: linear-gradient(to bottom, black, transparent 92%);
 }
@@ -155,11 +147,7 @@ ul {
     place-items: center;
     border: 1px solid rgba(142, 184, 255, 0.45);
     border-radius: 12px;
-    background: linear-gradient(
-        145deg,
-        var(--primary),
-        #714fc5
-    );
+    background: linear-gradient(145deg, var(--primary), #714fc5);
     box-shadow:
         0 9px 28px rgba(70, 87, 218, 0.34),
         inset 0 1px 0 rgba(255, 255, 255, 0.24);
@@ -361,11 +349,7 @@ ul {
 
 .button-primary {
     color: white;
-    background: linear-gradient(
-        130deg,
-        var(--primary),
-        #7654d8
-    );
+    background: linear-gradient(130deg, var(--primary), #7654d8);
     box-shadow: 0 13px 35px rgba(71, 91, 220, 0.3);
 }
 
