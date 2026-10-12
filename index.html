@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AxloMC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#070b16;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top right,#7d4dff20,transparent 40%),
+    radial-gradient(circle at bottom left,#26d7ff20,transparent 40%);
+    z-index:-1;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+}
+
+.logo{
+    width:240px;
+    max-width:75%;
+    margin-bottom:25px;
+    filter:drop-shadow(0 0 30px #7d4dff55);
+}
+
+h1{
+    font-size:5rem;
+    font-weight:800;
+    letter-spacing:8px;
+}
+
+.typewriter{
+    margin-top:20px;
+    font-size:1.3rem;
+    color:#cbd5e1;
+    min-height:40px;
+}
+
+.cursor{
+    animation:blink .8s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+
+.actions{
+    margin-top:40px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+    opacity:0;
+    transform:translateY(20px);
+    transition:1s;
+}
+
+.actions.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.btn{
+    padding:14px 28px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    text-decoration:none;
+    color:white;
+    background:#101929;
+    border:1px solid #25324d;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    border-color:#7d4dff;
+    box-shadow:0 0 25px #7d4dff33;
+}
+
+.copy{
+    background:linear-gradient(135deg,#7d4dff,#26d7ff);
+}
+
+.section{
+    padding:100px 10%;
+}
+
+.section-title{
+    font-size:3rem;
+    margin-bottom:50px;
+    text-align:center;
+}
+
+.grid{
+    display:grid;
+    gap:24px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+}
+
+.card{
+    background:#0f1728;
+    border:1px solid #1f2d46;
+    padding:30px;
+    border-radius:18px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:#7d4dff;
+}
+
+.card h3{
+    margin-bottom:12px;
+    font-size:1.4rem;
+}
+
+.card p{
+    color:#9ca3af;
+    line-height:1.7;
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    color:#6b7280;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<img.png
+
+<h1>AXLOMC</h1>
+
+<div class="typewriter">
+    <span id="type"></span><span class="cursor">|</span>
+</div>
+
+<div class="actions" id="actions">
+
+<button class="btn copy" onclick="copyIP()">
+Copy Server IP
+</button>
+
+<a class="btn" href="https://discord.gg/" targete.com/
+YouTube
+</a>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">Explore</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Shop</h3>
+<p>
+Ranks, Jewels, Chat Tags and exclusive rewards.
+</p>
+</div>
+
+<div class="card">
+<h3>Staff</h3>
+<p>
+Meet the team behind AxloMC and learn about each role.
+</p>
+</div>
+
+<div class="card">
+<h3>Announcements</h3>
+<p>
+Server updates, maintenance schedules and official notices.
+</p>
+</div>
+
+<div class="card">
+<h3>News</h3>
+<p>
+Latest information regarding upcoming features and events.
+</p>
+</div>
+
+<div class="card">
+<h3>Posts</h3>
+<p>
+Community stories, highlights and featured content.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+AXLOMC Minecraft Network
+</footer>
+
+<script>
+
+const text =
+"Explore your world. Make your cool life.";
+
+let i = 0;
+
+function typeWriter(){
+
+    if(i < text.length){
+        document.getElementById("type").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter,50);
+    }
+    else{
+        document.getElementById("actions").classList.add("show");
+    }
+}
+
+typeWriter();
+
+function copyIP(){
+
+    navigator.clipboard.writeText("play.axlomc.net");
+
+    const button = document.querySelector(".copy");
+
+    button.innerText = "IP Copied!";
+
+    setTimeout(()=>{
+        button.innerText = "Copy Server IP";
+    },2000);
+}
+
+</script>
+
+</body>
+</html>
