@@ -1,68 +1,1856 @@
-const siteHeader = document.getElementById("siteHeader");
-const menuButton = document.getElementById("menuButton");
-const navigationLinks = document.getElementById("navigationLinks");
-const currentYear = document.getElementById("currentYear");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta
+        name="description"
+        content="AxloMC is a next-generation Minecraft network featuring competitive games, survival, fair progression, and community events."
+    >
+    <meta name="theme-color" content="#070a12">
 
-function updateHeader() {
-    if (window.scrollY > 20) {
-        siteHeader.classList.add("scrolled");
-    } else {
-        siteHeader.classList.remove("scrolled");
-    }
-}
+    <title>AxloMC | Minecraft Network</title>
 
-function openMenu() {
-    menuButton.classList.add("open");
-    navigationLinks.classList.add("open");
+    <style>
+        :root {
+            --background: #070a12;
+            --surface: rgba(16, 23, 38, 0.78);
+            --primary: #667cff;
+            --primary-light: #8ca8ff;
+            --secondary: #58ddff;
+            --accent: #a36cff;
+            --success: #50e2a1;
+            --text: #f7f9ff;
+            --text-muted: #9faac0;
+            --border: rgba(139, 164, 214, 0.16);
+            --border-bright: rgba(112, 165, 255, 0.38);
+            --shadow: 0 30px 80px rgba(0, 0, 0, 0.38);
+            --content-width: 1180px;
+            --header-height: 78px;
+        }
 
-    menuButton.setAttribute("aria-expanded", "true");
-    menuButton.setAttribute("aria-label", "Close navigation menu");
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-function closeMenu() {
-    menuButton.classList.remove("open");
-    navigationLinks.classList.remove("open");
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
 
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", "Open navigation menu");
-}
+        body {
+            min-width: 320px;
+            overflow-x: hidden;
+            color: var(--text);
+            background: var(--background);
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            line-height: 1.6;
+        }
 
-function toggleMenu() {
-    const menuIsOpen = navigationLinks.classList.contains("open");
+        button,
+        a {
+            font: inherit;
+        }
 
-    if (menuIsOpen) {
-        closeMenu();
-    } else {
-        openMenu();
-    }
-}
+        button {
+            color: inherit;
+        }
 
-menuButton.addEventListener("click", toggleMenu);
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+        }
 
-navigationLinks.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-});
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-window.addEventListener(
-    "scroll",
-    updateHeader,
-    {
-        passive: true
-    }
-);
+        ul {
+            list-style: none;
+        }
 
-window.addEventListener("resize", () => {
-    if (window.innerWidth > 760) {
-        closeMenu();
-    }
-});
+        .page-background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
 
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeMenu();
-    }
-});
+        .background-grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0.25;
+            background-image:
+                linear-gradient(
+                    rgba(126, 151, 207, 0.055) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(126, 151, 207, 0.055) 1px,
+                    transparent 1px
+                );
+            background-size: 65px 65px;
+            mask-image: linear-gradient(to bottom, black, transparent 92%);
+        }
 
-currentYear.textContent = new Date().getFullYear();
+        .background-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+        }
 
-updateHeader();
+        .background-glow-left {
+            top: 80px;
+            left: -220px;
+            width: 600px;
+            height: 600px;
+            background: rgba(77, 98, 234, 0.18);
+        }
+
+        .background-glow-right {
+            top: 500px;
+            right: -260px;
+            width: 650px;
+            height: 650px;
+            background: rgba(138, 76, 223, 0.15);
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            border-bottom: 1px solid transparent;
+            transition:
+                background-color 180ms ease,
+                border-color 180ms ease,
+                backdrop-filter 180ms ease;
+        }
+
+        .site-header.scrolled {
+            border-color: var(--border);
+            background: rgba(7, 10, 18, 0.84);
+            backdrop-filter: blur(18px);
+        }
+
+        .navbar {
+            display: flex;
+            width: min(calc(100% - 40px), var(--content-width));
+            height: 100%;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 40px;
+            height: 40px;
+            place-items: center;
+            border: 1px solid rgba(142, 184, 255, 0.45);
+            border-radius: 12px;
+            background: linear-gradient(
+                145deg,
+                var(--primary),
+                #714fc5
+            );
+            box-shadow:
+                0 9px 28px rgba(70, 87, 218, 0.34),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .brand-text {
+            letter-spacing: 0.08em;
+            font-size: 19px;
+            font-weight: 900;
+        }
+
+        .brand-text span {
+            color: var(--primary-light);
+        }
+
+        .navigation-links {
+            display: flex;
+            align-items: center;
+            gap: 29px;
+        }
+
+        .navigation-links > a:not(.navigation-cta) {
+            position: relative;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 650;
+            transition: color 160ms ease;
+        }
+
+        .navigation-links > a:not(.navigation-cta)::after {
+            position: absolute;
+            right: 0;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            margin: auto;
+            border-radius: 999px;
+            background: var(--secondary);
+            content: "";
+            transition: width 160ms ease;
+        }
+
+        .navigation-links > a:not(.navigation-cta):hover {
+            color: var(--text);
+        }
+
+        .navigation-links > a:not(.navigation-cta):hover::after {
+            width: 100%;
+        }
+
+        .navigation-cta {
+            padding: 9px 18px;
+            border: 1px solid rgba(127, 171, 255, 0.34);
+            border-radius: 10px;
+            background: rgba(95, 121, 255, 0.14);
+            font-size: 14px;
+            font-weight: 750;
+            transition:
+                transform 160ms ease,
+                background-color 160ms ease;
+        }
+
+        .navigation-cta:hover {
+            background: rgba(95, 121, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .menu-button {
+            display: none;
+            width: 44px;
+            height: 44px;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--surface);
+            cursor: pointer;
+        }
+
+        .menu-button span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            margin: 5px 0;
+            border-radius: 999px;
+            background: var(--text);
+            transition:
+                transform 180ms ease,
+                opacity 180ms ease;
+        }
+
+        .section {
+            width: min(calc(100% - 40px), var(--content-width));
+            margin: 0 auto;
+            padding: 110px 0;
+        }
+
+        .hero {
+            display: grid;
+            min-height: 100vh;
+            padding-top: calc(var(--header-height) + 80px);
+            grid-template-columns: minmax(0, 1.06fr) minmax(350px, 0.94fr);
+            align-items: center;
+            gap: 65px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            margin-bottom: 25px;
+            padding: 7px 13px;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid rgba(80, 226, 161, 0.23);
+            border-radius: 999px;
+            color: #c9fce3;
+            background: rgba(80, 226, 161, 0.06);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: status-pulse 2s infinite;
+        }
+
+        .eyebrow {
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-size: 12px;
+            font-weight: 850;
+            letter-spacing: 0.18em;
+        }
+
+        .hero h1 {
+            max-width: 740px;
+            margin-bottom: 25px;
+            letter-spacing: -0.055em;
+            font-size: clamp(58px, 8vw, 96px);
+            font-weight: 950;
+            line-height: 0.94;
+        }
+
+        .hero h1 span {
+            color: transparent;
+            background: linear-gradient(
+                90deg,
+                var(--primary-light),
+                var(--secondary),
+                #c07bff
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--text-muted);
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+        .hero-actions,
+        .join-actions {
+            display: flex;
+            margin-top: 32px;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 51px;
+            padding: 0 24px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 800;
+            transition:
+                transform 160ms ease,
+                border-color 160ms ease,
+                box-shadow 160ms ease,
+                background-color 160ms ease;
+        }
+
+        .button:not(:disabled):hover {
+            transform: translateY(-3px);
+        }
+
+        .button-primary {
+            color: white;
+            background: linear-gradient(
+                130deg,
+                var(--primary),
+                #7654d8
+            );
+            box-shadow: 0 13px 35px rgba(71, 91, 220, 0.3);
+        }
+
+        .button-primary:not(:disabled):hover {
+            box-shadow: 0 17px 42px rgba(71, 91, 220, 0.45);
+        }
+
+        .button-secondary {
+            border-color: var(--border-bright);
+            background: rgba(17, 26, 42, 0.68);
+        }
+
+        .button-secondary:not(:disabled):hover {
+            border-color: rgba(117, 178, 255, 0.7);
+            background: rgba(28, 41, 66, 0.84);
+        }
+
+        .server-address-card {
+            display: flex;
+            width: 100%;
+            max-width: 570px;
+            margin-top: 20px;
+            padding: 14px 17px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: rgba(13, 19, 31, 0.76);
+        }
+
+        .server-address-card > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .server-address-label {
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+        }
+
+        .server-address-card strong {
+            font-size: 17px;
+        }
+
+        .copy-button {
+            padding: 9px 13px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: rgba(105, 130, 255, 0.08);
+            font-size: 12px;
+            font-weight: 750;
+        }
+
+        .hero-statistics {
+            display: grid;
+            margin-top: 38px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+        }
+
+        .statistic {
+            padding-left: 15px;
+            border-left: 2px solid rgba(100, 151, 255, 0.34);
+        }
+
+        .statistic strong,
+        .statistic span {
+            display: block;
+        }
+
+        .statistic strong {
+            margin-bottom: 3px;
+            font-size: 15px;
+        }
+
+        .statistic span {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: grid;
+            width: min(100%, 510px);
+            aspect-ratio: 1;
+            margin-left: auto;
+            place-items: center;
+        }
+
+        .hero-visual::before {
+            position: absolute;
+            inset: 14%;
+            border-radius: 50%;
+            background: rgba(75, 111, 255, 0.12);
+            filter: blur(55px);
+            content: "";
+        }
+
+        .visual-core {
+            position: relative;
+            z-index: 4;
+            display: grid;
+            width: 150px;
+            height: 150px;
+            place-items: center;
+            border: 1px solid rgba(135, 185, 255, 0.5);
+            border-radius: 36px;
+            background: linear-gradient(
+                145deg,
+                rgba(90, 124, 255, 0.98),
+                rgba(87, 50, 183, 0.98)
+            );
+            box-shadow:
+                0 0 70px rgba(83, 111, 255, 0.34),
+                inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            transform: rotate(8deg);
+            animation: core-float 6s ease-in-out infinite;
+        }
+
+        .visual-core span {
+            font-size: 77px;
+            font-weight: 950;
+            transform: rotate(-8deg);
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px solid rgba(119, 158, 230, 0.17);
+            border-radius: 50%;
+        }
+
+        .orbit-one {
+            width: 47%;
+            height: 47%;
+        }
+
+        .orbit-two {
+            width: 69%;
+            height: 69%;
+            border-style: dashed;
+            animation: orbit-spin 30s linear infinite;
+        }
+
+        .orbit-three {
+            width: 91%;
+            height: 91%;
+            border-color: rgba(151, 105, 255, 0.15);
+            animation: orbit-spin-reverse 40s linear infinite;
+        }
+
+        .floating-card {
+            position: absolute;
+            z-index: 5;
+            min-width: 140px;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: rgba(13, 19, 30, 0.84);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(14px);
+        }
+
+        .floating-card span,
+        .floating-card strong {
+            display: block;
+        }
+
+        .floating-card span {
+            margin-bottom: 2px;
+            color: var(--text-muted);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+        }
+
+        .floating-card strong {
+            font-size: 14px;
+        }
+
+        .floating-card-one {
+            top: 17%;
+            right: 1%;
+            animation: card-float 5.5s ease-in-out infinite;
+        }
+
+        .floating-card-two {
+            bottom: 13%;
+            left: -1%;
+            animation: card-float 6s ease-in-out 1s infinite;
+        }
+
+        .floating-card-three {
+            top: 23%;
+            left: -5%;
+            animation: card-float 6.5s ease-in-out 0.4s infinite;
+        }
+
+        .section-heading {
+            max-width: 680px;
+            margin-bottom: 52px;
+        }
+
+        .section-heading h2,
+        .economy-content h2,
+        .join-content h2 {
+            margin-bottom: 17px;
+            letter-spacing: -0.035em;
+            font-size: clamp(38px, 5vw, 59px);
+            line-height: 1.05;
+        }
+
+        .section-heading > p:last-child,
+        .economy-content > p,
+        .join-content > p {
+            color: var(--text-muted);
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .game-card {
+            position: relative;
+            display: flex;
+            min-height: 320px;
+            padding: 29px;
+            gap: 22px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: linear-gradient(
+                145deg,
+                rgba(18, 25, 38, 0.9),
+                rgba(10, 15, 24, 0.86)
+            );
+            transition:
+                transform 200ms ease,
+                border-color 200ms ease;
+        }
+
+        .game-card::before {
+            position: absolute;
+            right: -80px;
+            bottom: -100px;
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background: rgba(93, 124, 255, 0.1);
+            filter: blur(25px);
+            content: "";
+        }
+
+        .game-card:hover {
+            border-color: rgba(117, 168, 255, 0.4);
+            transform: translateY(-6px);
+        }
+
+        .game-icon {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            width: 59px;
+            min-width: 59px;
+            height: 59px;
+            place-items: center;
+            border: 1px solid rgba(117, 177, 255, 0.3);
+            border-radius: 15px;
+            color: var(--primary-light);
+            background: rgba(82, 114, 231, 0.12);
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .game-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-label {
+            display: inline-block;
+            margin-bottom: 13px;
+            color: var(--secondary);
+            font-size: 10px;
+            font-weight: 850;
+            letter-spacing: 0.15em;
+        }
+
+        .game-card h3 {
+            margin-bottom: 11px;
+            font-size: 27px;
+        }
+
+        .game-card p {
+            margin-bottom: 21px;
+            color: var(--text-muted);
+        }
+
+        .game-card li {
+            position: relative;
+            margin-top: 8px;
+            padding-left: 17px;
+            color: #c8d0df;
+            font-size: 13px;
+        }
+
+        .game-card li::before {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            content: "";
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+        }
+
+        .feature-card {
+            min-height: 280px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: rgba(16, 23, 35, 0.67);
+            transition:
+                transform 180ms ease,
+                border-color 180ms ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-bright);
+            transform: translateY(-5px);
+        }
+
+        .feature-number {
+            display: block;
+            margin-bottom: 36px;
+            color: var(--primary-light);
+            font-size: 12px;
+            font-weight: 850;
+            letter-spacing: 0.13em;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 13px;
+            font-size: 20px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .economy-panel,
+        .join-panel {
+            display: grid;
+            padding: clamp(30px, 6vw, 70px);
+            overflow: hidden;
+            border: 1px solid var(--border-bright);
+            border-radius: 27px;
+            background:
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(116, 90, 231, 0.2),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    145deg,
+                    rgba(20, 29, 46, 0.94),
+                    rgba(10, 15, 24, 0.94)
+                );
+            box-shadow: var(--shadow);
+            grid-template-columns: 1.06fr 0.94fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .economy-flow {
+            margin-top: 35px;
+        }
+
+        .economy-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .economy-step > span {
+            display: grid;
+            width: 38px;
+            min-width: 38px;
+            height: 38px;
+            place-items: center;
+            border: 1px solid rgba(104, 164, 255, 0.32);
+            border-radius: 11px;
+            color: var(--primary-light);
+            background: rgba(86, 119, 230, 0.1);
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .economy-step strong {
+            font-size: 15px;
+        }
+
+        .economy-step p {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .economy-line {
+            width: 1px;
+            height: 23px;
+            margin: 5px 0 5px 18px;
+            background: rgba(127, 160, 224, 0.23);
+        }
+
+        .currency-card {
+            position: relative;
+            width: min(100%, 400px);
+            aspect-ratio: 1.55;
+            margin-left: auto;
+            padding: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(181, 204, 255, 0.35);
+            border-radius: 24px;
+            background:
+                radial-gradient(
+                    circle at 75% 25%,
+                    rgba(93, 227, 255, 0.36),
+                    transparent 31%
+                ),
+                linear-gradient(
+                    140deg,
+                    #324fbb,
+                    #5337a4 55%,
+                    #1b2349
+                );
+            box-shadow:
+                0 35px 75px rgba(24, 27, 70, 0.48),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            transform: rotate(3deg);
+            transition: transform 240ms ease;
+        }
+
+        .currency-card:hover {
+            transform: rotate(0deg) translateY(-5px);
+        }
+
+        .currency-card::after {
+            position: absolute;
+            top: -90px;
+            right: -55px;
+            width: 230px;
+            height: 230px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .currency-card-header,
+        .currency-card-footer {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+        }
+
+        .currency-symbol {
+            position: relative;
+            z-index: 1;
+            margin-top: 23px;
+            font-size: 57px;
+            font-weight: 950;
+            letter-spacing: -0.07em;
+        }
+
+        .currency-balance {
+            position: relative;
+            z-index: 1;
+            margin-top: 22px;
+        }
+
+        .currency-balance span,
+        .currency-balance strong {
+            display: block;
+        }
+
+        .currency-balance span {
+            opacity: 0.73;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+        }
+
+        .currency-balance strong {
+            margin-top: 2px;
+            font-size: 20px;
+        }
+
+        .currency-card-footer {
+            position: absolute;
+            right: 25px;
+            bottom: 21px;
+            left: 25px;
+            opacity: 0.72;
+        }
+
+        .join-panel {
+            grid-template-columns: 1fr 0.95fr;
+        }
+
+        .development-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .development-item {
+            display: grid;
+            padding: 17px;
+            align-items: center;
+            gap: 14px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: rgba(8, 13, 22, 0.44);
+            grid-template-columns: auto 1fr auto;
+        }
+
+        .development-number {
+            color: var(--primary-light);
+            font-size: 11px;
+            font-weight: 850;
+        }
+
+        .development-content strong {
+            font-size: 14px;
+        }
+
+        .development-content p {
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+
+        .development-status {
+            padding: 5px 8px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--text-muted);
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+        }
+
+        .development-status.active {
+            border-color: rgba(80, 226, 161, 0.25);
+            color: var(--success);
+            background: rgba(80, 226, 161, 0.06);
+        }
+
+        .site-footer {
+            padding: 55px 0 45px;
+            border-top: 1px solid var(--border);
+            background: rgba(5, 8, 13, 0.7);
+        }
+
+        .footer-content {
+            display: flex;
+            width: min(calc(100% - 40px), var(--content-width));
+            margin: 0 auto;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .footer-legal {
+            max-width: 290px;
+            color: #717d90;
+            font-size: 10px;
+            text-align: right;
+        }
+
+        @keyframes status-pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 6px var(--success);
+            }
+
+            50% {
+                box-shadow: 0 0 18px var(--success);
+            }
+        }
+
+        @keyframes core-float {
+            0%,
+            100% {
+                transform: rotate(8deg) translateY(0);
+            }
+
+            50% {
+                transform: rotate(5deg) translateY(-14px);
+            }
+        }
+
+        @keyframes orbit-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes orbit-spin-reverse {
+            from {
+                transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes card-float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                padding-top: 155px;
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                max-width: 760px;
+            }
+
+            .hero-visual {
+                width: min(100%, 550px);
+                margin: 20px auto 0;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .economy-panel,
+            .join-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .currency-card {
+                margin: 10px auto 0;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 760px) {
+            :root {
+                --header-height: 70px;
+            }
+
+            .section {
+                width: min(calc(100% - 28px), var(--content-width));
+                padding: 78px 0;
+            }
+
+            .navbar {
+                width: min(calc(100% - 28px), var(--content-width));
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .navigation-links {
+                position: fixed;
+                top: var(--header-height);
+                right: 14px;
+                left: 14px;
+                display: flex;
+                max-height: 0;
+                padding: 0 20px;
+                overflow: hidden;
+                border: 1px solid transparent;
+                border-radius: 15px;
+                background: rgba(9, 13, 22, 0.97);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                opacity: 0;
+                pointer-events: none;
+                transition:
+                    max-height 220ms ease,
+                    padding 220ms ease,
+                    opacity 180ms ease,
+                    border-color 180ms ease;
+            }
+
+            .navigation-links.open {
+                max-height: 430px;
+                padding: 14px 20px 20px;
+                border-color: var(--border);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .navigation-links > a:not(.navigation-cta) {
+                padding: 13px 0;
+            }
+
+            .navigation-links > a:not(.navigation-cta)::after {
+                display: none;
+            }
+
+            .navigation-cta {
+                margin-top: 9px;
+                text-align: center;
+            }
+
+            .menu-button.open span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .menu-button.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-button.open span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 130px;
+                gap: 45px;
+            }
+
+            .hero h1 {
+                font-size: clamp(53px, 16vw, 78px);
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .hero-actions .button,
+            .join-actions .button {
+                width: 100%;
+            }
+
+            .server-address-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .hero-statistics {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                width: 100%;
+            }
+
+            .floating-card-one {
+                right: 0;
+            }
+
+            .floating-card-two,
+            .floating-card-three {
+                left: 0;
+            }
+
+            .game-grid,
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .game-card {
+                min-height: 0;
+                flex-direction: column;
+            }
+
+            .feature-card {
+                min-height: 230px;
+            }
+
+            .economy-panel,
+            .join-panel {
+                padding: 28px 21px;
+                gap: 45px;
+            }
+
+            .currency-card {
+                padding: 20px;
+            }
+
+            .currency-card-footer {
+                right: 20px;
+                bottom: 17px;
+                left: 20px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero-visual {
+                transform: scale(0.9);
+            }
+
+            .visual-core {
+                width: 125px;
+                height: 125px;
+            }
+
+            .visual-core span {
+                font-size: 65px;
+            }
+
+            .floating-card {
+                min-width: 118px;
+                padding: 10px 12px;
+            }
+
+            .floating-card strong {
+                font-size: 12px;
+            }
+
+            .currency-symbol {
+                margin-top: 15px;
+                font-size: 45px;
+            }
+
+            .currency-balance {
+                margin-top: 14px;
+            }
+
+            .currency-card-footer {
+                display: none;
+            }
+
+            .development-item {
+                grid-template-columns: auto 1fr;
+            }
+
+            .development-status {
+                grid-column: 2;
+                justify-self: start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-background" aria-hidden="true">
+        <div class="background-grid"></div>
+        <div class="background-glow background-glow-left"></div>
+        <div class="background-glow background-glow-right"></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <nav class="navbar" aria-label="Main navigation">
+            #home
+                <span class="brand-mark">A</span>
+
+                <span class="brand-text">
+                    AXLO<span>MC</span>
+                </span>
+            </a>
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="navigationLinks"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="navigation-links" id="navigationLinks">
+                #homeHome</a>
+                #gamesGames</a>
+                #featuresFeatures</a>
+                #economyAX Economy</a>
+                #joinJoin</a>
+                #joinPlay Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero section" id="home">
+            <div class="hero-content">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Network in development</span>
+                </div>
+
+                <p class="eyebrow">
+                    NEXT-GENERATION MINECRAFT NETWORK
+                </p>
+
+                <h1>
+                    Play without
+                    <span>limits.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Compete, survive, create, and build your legacy in a
+                    Minecraft network designed around fair gameplay,
+                    meaningful progression, and an active global community.
+                </p>
+
+                <div class="hero-actions">
+                    #join
+                        Join AxloMC
+                    </a>
+
+                    #games
+                        Explore Games
+                    </a>
+                </div>
+
+                <div class="server-address-card">
+                    <div>
+                        <span class="server-address-label">
+                            SERVER ADDRESS
+                        </span>
+
+                        <strong>
+                            Coming Soon
+                        </strong>
+                    </div>
+
+                    <button
+                        class="copy-button"
+                        type="button"
+                        disabled
+                    >
+                        Not Available
+                    </button>
+                </div>
+
+                <div class="hero-statistics">
+                    <div class="statistic">
+                        <strong>In Development</strong>
+                        <span>Network Status</span>
+                    </div>
+
+                    <div class="statistic">
+                        <strong>Java + Bedrock</strong>
+                        <span>Planned Support</span>
+                    </div>
+
+                    <div class="statistic">
+                        <strong>Fair Play</strong>
+                        <span>Skill-Based Games</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="orbit orbit-three"></div>
+
+                <div class="visual-core">
+                    <span>A</span>
+                </div>
+
+                <div class="floating-card floating-card-one">
+                    <span>NETWORK</span>
+                    <strong>AxloMC</strong>
+                </div>
+
+                <div class="floating-card floating-card-two">
+                    <span>REWARD</span>
+                    <strong>+250 AX</strong>
+                </div>
+
+                <div class="floating-card floating-card-three">
+                    <span>PROGRESSION</span>
+                    <strong>Level Up</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="games">
+            <div class="section-heading">
+                <p class="eyebrow">GAME MODES</p>
+
+                <h2>Find your next challenge.</h2>
+
+                <p>
+                    Enter competitive matches, test your combat skills, or
+                    build a lasting world with friends.
+                </p>
+            </div>
+
+            <div class="game-grid">
+                <article class="game-card">
+                    <div class="game-icon">BW</div>
+
+                    <div class="game-card-content">
+                        <span class="card-label">PLANNED</span>
+                        <h3>BedWars</h3>
+
+                        <p>
+                            Protect your bed, gather resources, upgrade your
+                            team, and eliminate every opponent.
+                        </p>
+
+                        <ul>
+                            <li>Solo and team modes</li>
+                            <li>Levels and statistics</li>
+                            <li>Daily and weekly quests</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-icon">SW</div>
+
+                    <div class="game-card-content">
+                        <span class="card-label">PLANNED</span>
+                        <h3>SkyWars</h3>
+
+                        <p>
+                            Loot floating islands, choose your strategy, and
+                            become the final surviving player.
+                        </p>
+
+                        <ul>
+                            <li>Competitive maps</li>
+                            <li>Fast-paced combat</li>
+                            <li>Seasonal rewards</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-icon">D</div>
+
+                    <div class="game-card-content">
+                        <span class="card-label">PLANNED</span>
+                        <h3>Duels</h3>
+
+                        <p>
+                            Challenge other players in fast competitive
+                            matches across multiple combat modes.
+                        </p>
+
+                        <ul>
+                            <li>Ranked matchmaking</li>
+                            <li>Multiple duel kits</li>
+                            <li>Detailed match history</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-icon">SV</div>
+
+                    <div class="game-card-content">
+                        <span class="card-label">PLANNED</span>
+                        <h3>Survival</h3>
+
+                        <p>
+                            Explore, build, trade, and create a community in
+                            a balanced survival experience.
+                        </p>
+
+                        <ul>
+                            <li>Land protection</li>
+                            <li>Player economy</li>
+                            <li>Community events</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="features">
+            <div class="section-heading">
+                <p class="eyebrow">WHY AXLOMC?</p>
+
+                <h2>Built around players.</h2>
+
+                <p>
+                    AxloMC focuses on competitive integrity, meaningful
+                    progression, and community-driven experiences.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <span class="feature-number">01</span>
+                    <h3>Fair Progression</h3>
+
+                    <p>
+                        Success is earned through gameplay, strategy, and
+                        skill. Premium purchases focus on cosmetics and
+                        identity instead of combat power.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-number">02</span>
+                    <h3>Community Events</h3>
+
+                    <p>
+                        Join tournaments, building competitions,
+                        limited-time challenges, and special network events.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-number">03</span>
+                    <h3>Unified Network</h3>
+
+                    <p>
+                        Share progression, cosmetics, achievements, and
+                        rewards across the entire AxloMC network.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-number">04</span>
+                    <h3>Frequent Updates</h3>
+
+                    <p>
+                        New maps, modes, cosmetics, balance changes, and
+                        seasonal content will keep the network evolving.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="economy">
+            <div class="economy-panel">
+                <div class="economy-content">
+                    <p class="eyebrow">AX ECONOMY</p>
+
+                    <h2>Play. Earn. Customize.</h2>
+
+                    <p>
+                        AX is the main gameplay currency of AxloMC. Players
+                        can earn AX through matches, quests, achievements,
+                        daily rewards, and community events.
+                    </p>
+
+                    <div class="economy-flow">
+                        <div class="economy-step">
+                            <span>1</span>
+
+                            <div>
+                                <strong>Play</strong>
+                                <p>Join games and complete objectives.</p>
+                            </div>
+                        </div>
+
+                        <div class="economy-line"></div>
+
+                        <div class="economy-step">
+                            <span>2</span>
+
+                            <div>
+                                <strong>Earn AX</strong>
+                                <p>Receive AX for activity and progress.</p>
+                            </div>
+                        </div>
+
+                        <div class="economy-line"></div>
+
+                        <div class="economy-step">
+                            <span>3</span>
+
+                            <div>
+                                <strong>Customize</strong>
+                                <p>Unlock cosmetics and visual effects.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="currency-card">
+                    <div class="currency-card-header">
+                        <span>AXLOMC WALLET</span>
+                        <span>NETWORK</span>
+                    </div>
+
+                    <div class="currency-symbol">AX</div>
+
+                    <div class="currency-balance">
+                        <span>EXAMPLE BALANCE</span>
+                        <strong>12,500 AX</strong>
+                    </div>
+
+                    <div class="currency-card-footer">
+                        <span>PLAY TO EARN</span>
+                        <span>FAIR PROGRESSION</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="join">
+            <div class="join-panel">
+                <div class="join-content">
+                    <p class="eyebrow">JOIN THE NETWORK</p>
+
+                    <h2>Your adventure starts here.</h2>
+
+                    <p>
+                        AxloMC is currently in development. The official
+                        server address, supported versions, Discord server,
+                        and launch date will be announced before release.
+                    </p>
+
+                    <div class="join-actions">
+                        <button
+                            class="button button-primary"
+                            type="button"
+                            disabled
+                        >
+                            Server Coming Soon
+                        </button>
+
+                        <button
+                            class="button button-secondary"
+                            type="button"
+                            disabled
+                        >
+                            Discord Coming Soon
+                        </button>
+                    </div>
+                </div>
+
+                <div class="development-list">
+                    <div class="development-item">
+                        <span class="development-number">01</span>
+
+                        <div class="development-content">
+                            <strong>Website</strong>
+                            <p>Official website development</p>
+                        </div>
+
+                        <span class="development-status active">
+                            ACTIVE
+                        </span>
+                    </div>
+
+                    <div class="development-item">
+                        <span class="development-number">02</span>
+
+                        <div class="development-content">
+                            <strong>Core Network</strong>
+                            <p>Proxy, lobby, and account systems</p>
+                        </div>
+
+                        <span class="development-status">
+                            PLANNED
+                        </span>
+                    </div>
+
+                    <div class="development-item">
+                        <span class="development-number">03</span>
+
+                        <div class="development-content">
+                            <strong>Game Modes</strong>
+                            <p>Initial playable experiences</p>
+                        </div>
+
+                        <span class="development-status">
+                            PLANNED
+                        </span>
+                    </div>
+
+                    <div class="development-item">
+                        <span class="development-number">04</span>
+
+                        <div class="development-content">
+                            <strong>Public Launch</strong>
+                            <p>Official AxloMC network release</p>
+                        </div>
+
+                        <span class="development-status">
+                            FUTURE
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            #home
+                <span class="brand-mark">A</span>
+
+                <span class="brand-text">
+                    AXLO<span>MC</span>
+                </span>
+            </a>
+
+            <div class="footer-links">
+                #gamesGames</a>
+                #featuresFeatures</a>
+                #economyAX Economy</a>
+                #joinJoin</a>
+            </div>
+
+            <div class="footer-legal">
+                <p>
+                    AxloMC is not affiliated with Mojang Studios or Microsoft.
+                </p>
+
+                <p>
+                    &copy; <span id="currentYear"></span> AxloMC.
+                    All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const siteHeader = document.getElementById("siteHeader");
+        const menuButton = document.getElementById("menuButton");
+        const navigationLinks = document.getElementById("navigationLinks");
+        const currentYear = document.getElementById("currentYear");
+
+        function updateHeader() {
+            if (window.scrollY > 20) {
+                siteHeader.classList.add("scrolled");
+            } else {
+                siteHeader.classList.remove("scrolled");
+            }
+        }
+
+        function openMenu() {
+            menuButton.classList.add("open");
+            navigationLinks.classList.add("open");
+
+            menuButton.setAttribute("aria-expanded", "true");
+            menuButton.setAttribute(
+                "aria-label",
+                "Close navigation menu"
+            );
+        }
+
+        function closeMenu() {
+            menuButton.classList.remove("open");
+            navigationLinks.classList.remove("open");
+
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.setAttribute(
+                "aria-label",
+                "Open navigation menu"
+            );
+        }
+
+        function toggleMenu() {
+            const menuIsOpen =
+                navigationLinks.classList.contains("open");
+
+            if (menuIsOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        }
+
+        menuButton.addEventListener("click", toggleMenu);
+
+        navigationLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        window.addEventListener(
+            "scroll",
+            updateHeader,
+            {
+                passive: true
+            }
+        );
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 760) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        currentYear.textContent = new Date().getFullYear();
+
+        updateHeader();
+    </script>
+</body>
+</html>
