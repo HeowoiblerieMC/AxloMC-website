@@ -68,6 +68,3 @@ Players will be able to earn AX through:
 - Unlocking achievements
 - Claiming daily rewards
 - Participating in community events
-
-```text
-PLAY -> EARN AX -> UNLOCK COSMETICS
